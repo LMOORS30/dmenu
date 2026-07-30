@@ -3,53 +3,62 @@
 dmenu \- dynamic menu
 .SH SYNOPSIS
 .B dmenu
-.RB [ \-bfiv ]
-.RB [ \-l
-.IR lines ]
+.RB [ \-bcfrsvx ]
 .RB [ \-m
 .IR monitor ]
-.RB [ \-p
-.IR prompt ]
-.RB [ \-fn
-.IR font ]
-.RB [ \-nb
-.IR color ]
-.RB [ \-nf
-.IR color ]
-.RB [ \-sb
-.IR color ]
-.RB [ \-sf
-.IR color ]
-.RB [ \-ob
-.IR color ]
-.RB [ \-of
-.IR color ]
 .RB [ \-w
 .IR windowid ]
-.P
-.BR dmenu_run " ..."
+.RB [ \-d
+.IR delimiter ]
+.RB [ \-p
+.IR prompt ]
+.RB [ \-l
+.IR lines ]
+.RB [ \-bh
+.IR barheight ]
+.RB [ \-bw
+.IR borderwidth ]
+.RB [ \-min
+.IR minwidth ]
+.RB [ \-max
+.IR maxwidth ]
+.RB [ \-fit ]
+.RB [ \-hi ]
+.RB [ \-nn ]
+.RB [ \-noi ]
+.RB [ \-opt ]
 .SH DESCRIPTION
 .B dmenu
 is a dynamic menu for X, which reads a list of newline\-separated items from
-stdin.  When the user selects an item and presses Return, their choice is printed
-to stdout and dmenu terminates.  Entering text will narrow the items to those
+stdin. When the user selects an item and presses Return, their choice is printed
+to stdout and dmenu terminates. Entering text will narrow the items to those
 matching the tokens in the input.
-.P
-.B dmenu_run
-is a script used by
-.IR dwm (1)
-which lists programs in the user's $PATH and runs the result in their $SHELL.
 .SH OPTIONS
 .TP
 .B \-b
 dmenu appears at the bottom of the screen.
 .TP
+.BI \-bh " height"
+bar height for the text fields.
+.TP
+.BI \-bw " width"
+border width surrounding dmenu.
+.TP
+.B \-c
+dmenu appears centered on the screen.
+.TP
+.BI \-d " char"
+defines the delimiter character.
+.TP
 .B \-f
 dmenu grabs the keyboard before reading stdin if not reading from a tty. This
 is faster, but will lock up X until stdin reaches end\-of\-file.
 .TP
-.B \-i
-dmenu matches menu items case insensitively.
+.B \-fit
+dmenu does not show the page arrows.
+.TP
+.B \-hi
+dmenu highlights the prompt.
 .TP
 .BI \-l " lines"
 dmenu lists items vertically, with the given number of lines.
@@ -58,62 +67,62 @@ dmenu lists items vertically, with the given number of lines.
 dmenu is displayed on the monitor number supplied. Monitor numbers are starting
 from 0.
 .TP
+.BI \-max " width"
+maximum width for the centered dmenu window.
+.TP
+.BI \-min " width"
+minimum width for the centered dmenu window.
+.TP
+.B \-nn
+dmenu shows a count of matching items.
+.TP
+.B \-noi
+dmenu hides the input and displays the prompt full width.
+.TP
+.B \-opt
+dmenu item selection is optional.
+.TP
 .BI \-p " prompt"
 defines the prompt to be displayed to the left of the input field.
 .TP
-.BI \-fn " font"
-defines the font or font set used.
+.B \-r
+dmenu restricts output to a single exact match.
 .TP
-.BI \-nb " color"
-defines the normal background color.
-.IR #RGB ,
-.IR #RRGGBB ,
-and X color names are supported.
-.TP
-.BI \-nf " color"
-defines the normal foreground color.
-.TP
-.BI \-sb " color"
-defines the selected background color.
-.TP
-.BI \-sf " color"
-defines the selected foreground color.
-.TP
-.BI \-ob " color"
-defines the outline background color (for multiple selection).
-.TP
-.BI \-of " color"
-defines the outline foreground color (for multiple selection).
+.B \-s
+dmenu matches menu items case sensitively.
 .TP
 .B \-v
 prints version information to stdout, then exits.
 .TP
 .BI \-w " windowid"
 embed into windowid.
+.TP
+.B \-x
+the text includes a leading icon followed by the delimiter.
 .SH USAGE
-dmenu is completely controlled by the keyboard.  Items are selected using the
+dmenu is completely controlled by the keyboard. Items are selected using the
 arrow keys, page up, page down, home, and end.
 .TP
 .B Tab
 Copy the selected item to the input field.
 .TP
 .B Return
-Confirm selection.  Prints the selected item to stdout and exits, returning
+Confirm selection. Prints the selected item to stdout and exits, returning
 success.
 .TP
-.B Ctrl-Return
-Confirm selection.  Prints the selected item to stdout and continues.
+.B Ctrl\-Return
+Confirm selection. Prints the selected item to stdout and continues.
 .TP
 .B Shift\-Return
-Confirm input.  Prints the input text to stdout and exits, returning success.
+Confirm input. Prints the input text to stdout and exits, returning success.
 .TP
 .B Escape
 Exit without selecting an item, returning failure.
 .TP
-.B Ctrl-Left
+.B Ctrl\-Left
 Move cursor to the start of the current word
 .TP
-.B Ctrl-Right
+.B Ctrl\-Right
 Move cursor to the end of the current word
 .TP
 .B C\-a
@@ -147,7 +156,7 @@ Tab
 Return
 .TP
 .B C\-J
-Shift-Return
+Shift\-Return
 .TP
 .B C\-k
 Delete line right
@@ -156,7 +165,7 @@ Delete line right
 Return
 .TP
 .B C\-M
-Shift-Return
+Shift\-Return
 .TP
 .B C\-n
 Down
@@ -199,6 +208,10 @@ Page up
 .TP
 .B M\-l
 Down
+.SH CUSTOMIZATION
+.B dmenu
+is customized by creating a custom config.h and (re)compiling the source
+code. This keeps it fast, secure and simple.
 .SH SEE ALSO
-.IR dwm (1),
-.IR stest (1)
+.BR dwm (1),
+.BR stest (1)

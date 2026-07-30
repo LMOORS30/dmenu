@@ -2,23 +2,72 @@ dmenu - dynamic menu
 ====================
 dmenu is an efficient dynamic menu for X.
 
+Heavily modified dmenu build for my daily use. All patches inspected
+refactored and fully integrated. Liberal changes to the source code
+driven by personal preference. Command line parameters documented
+in the manual and other relevant functionality listed below.
+Examples in `script/`.
 
-Requirements
-------------
-In order to build dmenu you need the Xlib header files.
+credit
+------
+fork of <https://tools.suckless.org/dmenu>.
 
+install
+-------
+`sudo make install clean`
 
-Installation
-------------
-Edit config.mk to match your local setup (dmenu is installed into
-the /usr/local namespace by default).
+manual
+------
+`man dmenu`
 
-Afterwards enter the following command to build and install dmenu
-(if necessary as root):
+patch
+-----
+- [border](https://tools.suckless.org/dmenu/patches/border)
+  optional window border
 
-    make clean install
+- [center](https://tools.suckless.org/dmenu/patches/center)
+  window centering
+  + optional min max width
 
+- [colored-caret](https://tools.suckless.org/dmenu/patches/colored-caret)
+  caret color
 
-Running dmenu
--------------
-See the man page for details.
+- [case-insensitive](https://tools.suckless.org/dmenu/patches/case-insensitive)
+  default case insensitive matching
+
+- [fuzzymatch](tools.suckless.org/dmenu/patches/fuzzymatch)
+  fuzzy text matching
+  + custom match algorithm
+  + case-insensitive compatibility
+
+- [fuzzyhighlight](https://tools.suckless.org/dmenu/patches/fuzzyhighlight)
+  fuzzy text highlighting
+  + custom match algorithm
+  + fuzzymatch compatibility
+
+- [line-height](https://tools.suckless.org/dmenu/patches/line-height)
+  adjustable line height
+
+- [no-default-select](https://tools.suckless.org/dmenu/patches/no-default-select)
+  optional item selection
+
+- [no-input](https://tools.suckless.org/dmenu/patches/no-input)
+  optional hidden input
+
+- [numbers](https://tools.suckless.org/dmenu/patches/numbers)
+  optional item counter
+
+- [restrict-return](https://tools.suckless.org/dmenu/patches/restrict-return)
+  optional restricted output
+
+- [vertfull](https://tools.suckless.org/dmenu/patches/vertfull)
+  full width vertical rendering
+
+- [tmenu](https://tools.suckless.org/dmenu/patches/tmenu)
+  separate matching and output values
+
+- leading icons
+  + optional display only prefix
+
+- hidden arrows
+  + optional cleaner interface

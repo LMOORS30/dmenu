@@ -1,0 +1,7 @@
+#!/bin/sh
+echo "
+ |home|waterfox -P home
+ |work|waterfox -P work
+" |
+dmenu -r -d '|' -x -c -bw 30 -bh 30 -noi -fit -p "" "$@" |
+${SHELL:-"/bin/sh"} &

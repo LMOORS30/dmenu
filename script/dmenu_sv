@@ -1,0 +1,20 @@
+#!/bin/sh
+list=$(ls -d /var/service/* ~/.runit/service/*)
+pairs=$(echo "$list"| awk '{system("basename -z -- " $1);print "|" $1}')
+service=$(echo "$pairs" | dmenu -d '|' -nn "$@")
+file=$(basename -- "$service")
+path=$(dirname -- "$service")
+status=$(sudo SVDIR="$path" sv status "$file")
+if [ ! -z "$service" ]; then
+echo "
+up|sudo sv up "$service"
+once|sudo sv once "$service"
+down|sudo sv down "$service"
+hup|sudo sv hup "$service"
+cont|sudo sv cont "$service"
+pause|sudo sv pause "$service"
+exit|sudo sv exit "$service"
+" |
+dmenu -r -d '|' -l 7 -c -bw 1 -noi -opt -p "$status" "$@" |
+${SHELL:-"/bin/sh"} &
+fi

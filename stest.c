@@ -1,15 +1,14 @@
 /* See LICENSE file for copyright and license details. */
-#include <sys/stat.h>
-
 #include <dirent.h>
 #include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/stat.h>
 #include <unistd.h>
 
-#include "arg.h"
 char *argv0;
+#include "arg.h"
 
 #define FLAG(x)  (flag[(x)-'a'])
 
@@ -94,8 +93,7 @@ main(int argc, char *argv[])
 			if (FLAG('l') && (dir = opendir(*argv))) {
 				/* test directory contents */
 				while ((d = readdir(dir))) {
-					r = snprintf(path, sizeof path, "%s/%s",
-					             *argv, d->d_name);
+					r = snprintf(path, sizeof path, "%s/%s", *argv, d->d_name);
 					if (r >= 0 && (size_t)r < sizeof path)
 						test(path, d->d_name);
 				}

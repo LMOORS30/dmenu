@@ -102,17 +102,17 @@ xfont_create(Drw *drw, const char *fontname, FcPattern *fontpattern)
 		 * behaviour whereas the former just results in missing-character
 		 * rectangles being drawn, at least with some fonts. */
 		if (!(xfont = XftFontOpenName(drw->dpy, drw->screen, fontname))) {
-			fprintf(stderr, "error, cannot load font from name: '%s'\n", fontname);
+			fprintf(stderr, "warning: cannot load font from name: '%s'\n", fontname);
 			return NULL;
 		}
 		if (!(pattern = FcNameParse((FcChar8 *) fontname))) {
-			fprintf(stderr, "error, cannot parse font name to pattern: '%s'\n", fontname);
+			fprintf(stderr, "warning: cannot parse font name to pattern: '%s'\n", fontname);
 			XftFontClose(drw->dpy, xfont);
 			return NULL;
 		}
 	} else if (fontpattern) {
 		if (!(xfont = XftFontOpenPattern(drw->dpy, fontpattern))) {
-			fprintf(stderr, "error, cannot load font from pattern.\n");
+			fprintf(stderr, "warning: cannot load font from pattern.\n");
 			return NULL;
 		}
 	} else {
@@ -175,7 +175,7 @@ drw_clr_create(Drw *drw, Clr *dest, const char *clrname)
 	if (!XftColorAllocName(drw->dpy, DefaultVisual(drw->dpy, drw->screen),
 	                       DefaultColormap(drw->dpy, drw->screen),
 	                       clrname, dest))
-		die("error, cannot allocate color '%s'", clrname);
+		die("cannot allocate color '%s'", clrname);
 }
 
 /* Create color schemes. */

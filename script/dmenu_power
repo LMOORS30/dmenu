@@ -1,0 +1,12 @@
+#!/bin/sh
+echo "
+ |Idle|sudo zzz -S
+󰒲 |Suspend|sudo zzz -z
+󰤄 |Hibernate|sudo ZZZ -Z
+󰌾 |Lock|slock
+󰤆 |Poweroff|sudo poweroff
+ |Reboot|sudo reboot
+󰍃 |Quit|sudo pkill dwm
+" |
+dmenu -r -d '|' -x -c -bw 18 -bh 36 -noi -fit -opt -p "  " -hi "$@" |
+${SHELL:-"/bin/sh"} &

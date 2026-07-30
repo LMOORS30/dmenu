@@ -27,11 +27,11 @@ die(const char *fmt, ...)
 }
 
 void *
-ecalloc(size_t nmemb, size_t size)
+ecalloc(size_t num, size_t size)
 {
 	void *p;
 
-	if (!(p = calloc(nmemb, size)))
+	if (!(p = calloc(num, size)))
 		die("calloc:");
 	return p;
 }

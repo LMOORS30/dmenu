@@ -3,16 +3,16 @@
 stest \- filter a list of files by properties
 .SH SYNOPSIS
 .B stest
-.RB [ -abcdefghlpqrsuwx ]
-.RB [ -n
+.RB [ \-abcdefghlpqrsuvwx ]
+.RB [ \-n
 .IR file ]
-.RB [ -o
+.RB [ \-o
 .IR file ]
 .RI [ file ...]
 .SH DESCRIPTION
 .B stest
 takes a list of files and filters by the files' properties, analogous to
-.IR test (1).
+.BR test (1).
 Files which pass all tests are printed to stdout. If no files are given, stest
 reads files from stdin.
 .SH OPTIONS
@@ -45,12 +45,10 @@ Test that files are symbolic links.
 Test the contents of a directory given as an argument.
 .TP
 .BI \-n " file"
-Test that files are newer than
-.IR file .
+Test that files are newer than file.
 .TP
 .BI \-o " file"
-Test that files are older than
-.IR file .
+Test that files are older than file.
 .TP
 .B \-p
 Test that files are named pipes.
@@ -86,5 +84,5 @@ No files passed all tests.
 .B 2
 An error occurred.
 .SH SEE ALSO
-.IR dmenu (1),
-.IR test (1)
+.BR dmenu (1),
+.BR test (1)

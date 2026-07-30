@@ -1,0 +1,17 @@
+#!/bin/sh
+echo "
+ |st|st
+ |nvim|st nvim
+󰈹 |browser|dmenu_browser "$@"
+󰍩 |signal|signal-desktop
+ |gimp|gimp
+󰕼 |vlc|vlc
+󰻂 |obs|obs
+ |scrot|mkdir -p ~/Screenshots && scrot -s ~/Screenshots/%Y-%m-%d-%H%M%S_\\\$wx\\\$h.png -e 'xclip -selection clipboard -target image/png -i \$f'
+ |audio|pavucontrol
+󰒓 |sv|dmenu_sv "$@"
+󰝰 |path|dmenu_run "$@"
+ |power|dmenu_power "$@"
+" |
+dmenu -r -d '|' -x "$@" |
+${SHELL:-"/bin/sh"} &
